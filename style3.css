@@ -1,0 +1,775 @@
+/* --- Глобальные переменные и дизайн-система 2026 --- */
+:root {
+    --color-bg-dark: #08080c;
+    --color-surface: #111118;
+    --color-surface-card: rgba(255, 255, 255, 0.02);
+    --color-border: rgba(255, 255, 255, 0.06);
+    
+    --color-text-primary: #f3f4f6;
+    --color-text-muted: #9ca3af;
+    
+    /* Трендовая неоновая палитра */
+    --accent-salad: #b5ff00;
+    --accent-salad-glow: rgba(181, 255, 0, 0.25);
+    --accent-purple: #9d4edd;
+    --accent-purple-glow: rgba(157, 78, 221, 0.3);
+    
+    --font-sans: 'Inter', sans-serif;
+    --anim-speed: 0.4s;
+}
+
+/* --- Сброс базовых стилей --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.small-container {
+    max-width: 800px;
+}
+
+/* --- Хедер (Матовое стекло) --- */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(8, 8, 12, 0.7);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.brand-logo {
+    font-size: 1.4rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--color-text-primary);
+    letter-spacing: -1px;
+}
+
+.brand-logo span {
+    color: var(--accent-salad);
+}
+
+.main-nav a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0 15px;
+    letter-spacing: 0.5px;
+    transition: color var(--anim-speed);
+}
+
+.main-nav a:hover {
+    color: var(--color-text-primary);
+}
+
+/* Кнопка с мягким пульсирующим свечением */
+.btn-pulse {
+    background: var(--accent-salad);
+    color: var(--color-bg-dark);
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    box-shadow: 0 0 20px var(--accent-salad-glow);
+    transition: transform var(--anim-speed), box-shadow var(--anim-speed);
+}
+
+.btn-pulse:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 35px var(--accent-salad);
+}
+
+/* --- Hero Секция --- */
+.hero-arena {
+    position: relative;
+    padding: 180px 0 100px 0;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+}
+
+.glow-source {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.purple-glow {
+    width: 400px;
+    height: 400px;
+    background: var(--accent-purple);
+    top: 10%;
+    right: 10%;
+    opacity: 0.15;
+}
+
+.salad-glow {
+    width: 350px;
+    height: 350px;
+    background: var(--accent-salad);
+    bottom: 5%;
+    left: 5%;
+    opacity: 0.1;
+}
+
+.hero-wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+}
+
+.hero-meta {
+    font-size: 0.9rem;
+    color: var(--accent-salad);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    margin-bottom: 30px;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #ffffff, var(--accent-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    max-width: 700px;
+    margin-bottom: 60px;
+}
+
+/* Сетка инфографики */
+.hero-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.stat-card {
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    padding: 32px;
+    border-radius: 8px;
+}
+
+.stat-num {
+    font-size: 2;
+    font-weight: 900;
+    color: var(--accent-salad);
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+/* --- Оформление общих секций --- */
+.section-padding {
+    padding: 120px 0;
+}
+
+.dark-surface {
+    background-color: var(--color-surface);
+}
+
+.separation-line {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.section-header {
+    margin-bottom: 60px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--accent-purple);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.section-header h2 {
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.section-lead {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin-top: 15px;
+    max-width: 650px;
+}
+
+.center-text .section-lead {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.accent-salad { color: var(--accent-salad); }
+.accent-purple { color: var(--accent-purple); }
+
+/* --- Сетка матрицы (CSS Grid) --- */
+.matrix-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr 1fr;
+    gap: 2px;
+    background: var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+}
+
+.matrix-header-cell {
+    background: #14141f;
+    padding: 24px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.accent-box-purple { color: var(--accent-purple); }
+.accent-box-salad { color: var(--accent-salad); }
+
+.matrix-label {
+    background: #0f0f15;
+    padding: 24px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+.matrix-cell {
+    background: var(--color-surface);
+    padding: 24px;
+    font-size: 0.95rem;
+}
+
+.font-italic {
+    font-style: italic;
+    color: var(--color-text-muted);
+}
+
+/* --- Секция проверки (Красные и зеленые зоны) --- */
+.flags-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.zone-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.flag-card {
+    display: flex;
+    gap: 20px;
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border);
+    padding: 24px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    transition: border-color var(--anim-speed);
+}
+
+.green-zone .flag-card:hover { border-color: var(--accent-salad); }
+.red-zone .flag-card:hover { border-color: #ef4444; }
+
+.flag-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.flag-info h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.flag-info p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+/* --- Анатомия учебного плана --- */
+.anatomy-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.anatomy-case {
+    background: var(--color-surface);
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+}
+
+.case-badge {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.text-red { color: #ef4444; }
+.text-green { color: var(--accent-salad); }
+
+.anatomy-case h3 {
+    margin-bottom: 15px;
+}
+
+.anatomy-case p {
+    color: var(--color-text-muted);
+}
+
+/* Инфографик-балка пропорций */
+.ratio-bar-wrapper h3 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.ratio-bar {
+    display: flex;
+    height: 50px;
+    border-radius: 6px;
+    overflow: hidden;
+    font-weight: 800;
+    font-size: 0.85rem;
+}
+
+.ratio-segment {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    color: var(--color-bg-dark);
+}
+
+.ratio-segment.practice { background-color: var(--accent-salad); }
+.ratio-segment.theory { background-color: var(--accent-purple); color: #fff; }
+
+/* --- Экономика образования --- */
+.finance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.finance-card {
+    background: var(--color-bg-dark);
+    border: 1px solid var(--color-border);
+    padding: 32px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.fin-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.05);
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.fin-badge.special {
+    background: var(--accent-purple);
+    color: #fff;
+}
+
+.highlight-card {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 25px var(--accent-purple-glow);
+}
+
+.finance-card h3 {
+    margin-bottom: 12px;
+}
+
+.finance-card p {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+/* --- Секция географических форматов --- */
+.formats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.format-item {
+    background: var(--color-surface-card);
+    border-left: 3px solid var(--color-border);
+    padding: 32px;
+    transition: border-color var(--anim-speed);
+}
+
+.format-item:hover {
+    border-left-color: var(--accent-salad);
+}
+
+.format-meta {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.format-item h3 {
+    margin-bottom: 12px;
+}
+
+.format-item p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+/* --- Секция психологии --- */
+.psychology-wrapper {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.psy-list {
+    list-style: none;
+    margin-top: 30px;
+}
+
+.psy-list li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 24px;
+}
+
+.psy-list li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent-salad);
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.abstract-matrix {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, var(--color-border) 25%, transparent 25%) -50px 0,
+                linear-gradient(225deg, var(--color-border) 25%, transparent 25%) -50px 0,
+                linear-gradient(45deg, var(--color-border) 25%, transparent 25%),
+                linear-gradient(315deg, var(--color-border) 25%, transparent 25%);
+    background-size: 100px 100px;
+    background-color: rgba(255,255,255,0.01);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+}
+
+/* --- Линейный таймлайн (Stepper) --- */
+.stepper-pipeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 40px;
+}
+
+.stepper-pipeline::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--color-border);
+}
+
+.step-node {
+    position: relative;
+    margin-bottom: 48px;
+}
+
+.step-number {
+    position: absolute;
+    left: -48px;
+    top: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--color-bg-dark);
+    border: 2px solid var(--accent-salad);
+    color: var(--color-text-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 800;
+    z-index: 2;
+}
+
+.step-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+
+.step-info p {
+    color: var(--color-text-muted);
+}
+
+/* --- FAQ Аккордеоны --- */
+.faq-accordion details {
+    background: var(--color-bg-dark);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.faq-accordion summary {
+    padding: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+    transition: color var(--anim-speed);
+}
+
+.faq-accordion summary:hover {
+    color: var(--accent-salad);
+}
+
+.faq-content {
+    padding: 0 24px 24px 24px;
+    color: var(--color-text-muted);
+    border-top: 1px solid rgba(255,255,255,0.02);
+}
+
+/* --- Креативный финал (Интерактивный Терминал) --- */
+.dynamic-finale {
+    background: linear-gradient(180deg, var(--color-bg-dark) 0%, #030305 100%);
+}
+
+.terminal-card {
+    background: #0d0d14;
+    border: 1px solid rgba(181, 255, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.terminal-header {
+    background: #141420;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.terminal-dots {
+    display: flex;
+    gap: 8px;
+    margin-right: 20px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot.red { background-color: #ef4444; }
+.dot.yellow { background-color: #f59e0b; }
+.dot.green { background-color: #10b981; }
+
+.terminal-title {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+.terminal-body {
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.terminal-body h2 {
+    font-size: 2.4rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.terminal-body p {
+    color: var(--color-text-muted);
+    margin-bottom: 40px;
+}
+
+.interactive-panel {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--color-border);
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.panel-status {
+    font-family: monospace;
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pulse-indicator {
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-salad);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-salad);
+    animation: blink 1.5s infinite alternate;
+}
+
+@keyframes blink {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+.panel-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn-mega {
+    background-color: var(--accent-salad);
+    color: var(--color-bg-dark);
+    padding: 16px 32px;
+    text-decoration: none;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    transition: background var(--anim-speed);
+}
+
+.btn-mega:hover {
+    background-color: #fff;
+}
+
+.btn-mega.outline-mega {
+    background-color: transparent;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+}
+
+.btn-mega.outline-mega:hover {
+    border-color: var(--accent-purple);
+    background: rgba(157, 78, 221, 0.1);
+}
+
+/* --- Подвал --- */
+.global-footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--color-border);
+    background: #050508;
+}
+
+.footer-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-brand {
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
+.footer-brand span { color: var(--accent-purple); }
+
+.footer-copy {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+/* --- Стили для адаптивности под мобильные экраны --- */
+max-width: 900px {
+    .hero-title { font-size: 3rem; }
+    .matrix-grid { grid-template-columns: 1fr; }
+    .matrix-label { background: #141420; color: #fff; }
+    .flags-layout { grid-template-columns: 1fr; }
+    .anatomy-box { grid-template-columns: 1fr; }
+    .psychology-wrapper { grid-template-columns: 1fr; }
+    .psychology-visual { display: none; }
+    .main-nav { display: none; }
+}.5rem
